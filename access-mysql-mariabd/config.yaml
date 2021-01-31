@@ -1,0 +1,6 @@
+DB_NAME='<your-database-name>'
+DB_HOST='127.0.0.1' #your database host
+DB_USER='root' #Database user
+#base64 encripted password 
+#To genearte base64 encripted password, run command: echo -n "your-password" | base64
+DB_PASSWD='<encripted password>'
