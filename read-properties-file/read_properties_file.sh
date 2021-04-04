@@ -11,7 +11,7 @@ function getPropVal {
 
 #Get the value with key
 function testPropertyVal {
-NAME=($(getPropVal 'confi.name'))
+NAME=($(getPropVal 'config.name'))
 echo $NAME
 }
 
