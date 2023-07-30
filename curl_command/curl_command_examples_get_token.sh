@@ -11,8 +11,14 @@ AUTH_URL="https://example.com/auth"
 USERNAME="user"
 PASSWORD="pass"
 
+# Build the JSON payload using jq
+PAYLOAD=$(jq --null-input \
+  --arg username "$USERNAME" \
+  --arg password "$PASSWORD" \
+  '{ "username": $username, "password": $password }')
+
 # Use curl to authenticate and obtain a token
-TOKEN=$(curl -s -X POST -H "Content-Type: application/json" -d '{"username": "'"$USERNAME"'", "password": "'"$PASSWORD"'"}' $AUTH_URL | jq -r '.token')
+TOKEN=$(curl -s -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$AUTH_URL" | jq -r '.token')
 
 # Check if the token was obtained successfully
 if [ -z "$TOKEN" ]; then
@@ -24,4 +30,4 @@ fi
 RESOURCE_URL="https://example.com/resource"
 
 # Use curl with the token to access the resource
-curl -s -H "Authorization: Bearer $TOKEN" $RESOURCE_URL
+curl -s -H "Authorization: Bearer $TOKEN" "$RESOURCE_URL"
