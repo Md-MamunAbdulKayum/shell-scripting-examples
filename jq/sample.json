@@ -1,0 +1,14 @@
+{
+  "app": "shell-scripting-examples",
+  "version": 1,
+  "users": [
+    {"name": "Olive", "role": "admin", "active": true},
+    {"name": "Olivia", "role": "user", "active": false},
+    {"name": "Mamun", "role": "developer", "active": true}
+  ],
+  "config": {
+    "region": "us-east-1",
+    "retries": 3,
+    "tags": ["demo", "bash"]
+  }
+}

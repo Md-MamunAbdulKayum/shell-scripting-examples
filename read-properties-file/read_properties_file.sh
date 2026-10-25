@@ -1,18 +1,24 @@
 #!/bin/bash
-FILE_NAME="config.properties"
+CWD="$(dirname "$0")"
+FILE_NAME="$CWD/config.properties"
+
 function getPropVal {
-    value= grep "${1}" ./$FILE_NAME|cut -d'=' -f2
-	if [[ -z "$value" ]]; then
-	   echo "Key not found"
-	   exit 1
-	fi
-	echo $value
+    local key=$1
+    local value
+    value=$(grep -F "${key}=" "$FILE_NAME" | head -n 1 | cut -d'=' -f2-)
+    value="${value//$'\r'/}"
+    if [[ -z "$value" ]]; then
+       echo "Key not found" >&2
+       return 1
+    fi
+    echo "$value"
 }
 
 #Get the value with key
 function testPropertyVal {
-NAME=($(getPropVal 'config.name'))
-echo $NAME
+    local name
+    name=$(getPropVal 'config.name') || exit 1
+    echo "$name"
 }
 
 #Call the testPropertyVal function

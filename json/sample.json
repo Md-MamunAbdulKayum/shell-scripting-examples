@@ -1,0 +1,11 @@
+{
+  "service": "billing-api",
+  "endpoints": {
+    "health": "/health",
+    "invoices": "/v1/invoices"
+  },
+  "features": {
+    "export_pdf": true,
+    "webhooks": false
+  }
+}

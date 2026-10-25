@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 #space is not allowed in either sides of the equal sign
 name=Olive
 colour=Green

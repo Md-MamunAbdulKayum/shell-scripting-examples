@@ -9,9 +9,14 @@ fi
 
 AGE=$2
 
-if [ $AGE -lt 13 ]; then
+if [ -z "$AGE" ]; then
+  echo "Usage: $0 <fruit_name> <age>" >&2
+  exit 1
+fi
+
+if [ "$AGE" -lt 13 ]; then
   echo "You're a child"
-elif [ $AGE -ge 13 ] && [ $AGE -lt 19 ]; then
+elif [ "$AGE" -ge 13 ] && [ "$AGE" -lt 19 ]; then
   echo "You're a teenager"
 else
   echo "You're a perfect fit!"

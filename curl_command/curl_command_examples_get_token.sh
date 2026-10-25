@@ -1,8 +1,12 @@
 #!/bin/bash
 #############################################################
 # @Mamun Kayum                                              #
-#                                                           #
+# curl + jq: obtain a bearer token, then call an API
+# Commands are commented so the script is safe to run locally.
+# Requires: curl, jq
 #############################################################
+
+set -euo pipefail
 
 # Set the URL of the authentication endpoint
 AUTH_URL="https://example.com/auth"
@@ -12,16 +16,21 @@ USERNAME="user"
 PASSWORD="pass"
 
 # Use curl to authenticate and obtain a token
-TOKEN=$(curl -s -X POST -H "Content-Type: application/json" -d '{"username": "'"$USERNAME"'", "password": "'"$PASSWORD"'"}' $AUTH_URL | jq -r '.token')
+# TOKEN=$(curl -s -X POST -H "Content-Type: application/json" \
+#   -d '{"username": "'"$USERNAME"'", "password": "'"$PASSWORD"'"}' "$AUTH_URL" \
+#   | jq -r '.token')
 
 # Check if the token was obtained successfully
-if [ -z "$TOKEN" ]; then
-    echo "Failed to obtain authentication token"
-    exit 1
-fi
+# if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+#     echo "Failed to obtain authentication token" >&2
+#     exit 1
+# fi
 
 # Set the URL of the resource to access
-RESOURCE_URL="https://example.com/resource"
+# RESOURCE_URL="https://example.com/resource"
 
 # Use curl with the token to access the resource
-curl -s -H "Authorization: Bearer $TOKEN" $RESOURCE_URL
+# curl -s -H "Authorization: Bearer $TOKEN" "$RESOURCE_URL"
+
+echo "Uncomment the curl/jq lines in $(basename "$0") to try against your API."
+exit 0

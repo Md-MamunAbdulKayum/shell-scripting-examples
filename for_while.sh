@@ -4,16 +4,16 @@ NUMBERS=$@
 
 for NUMBER in $NUMBERS
 do
- if [ $NUMBER -lt 10 ]; then
+ if [ "$NUMBER" -lt 10 ]; then
   continue
  fi
-  echo "Number is less or greater than 10, number: $NUMBER"
+  echo "Number is greater than or equal to 10: $NUMBER"
 done
 
 echo "for loop completed."
 
 COUNTER=0
-while [ $COUNTER -le 5 ]
+while [ "$COUNTER" -le 5 ]
 do
  echo "COUNT = $COUNTER"
  ((COUNTER++))

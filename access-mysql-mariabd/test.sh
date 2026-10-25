@@ -2,20 +2,15 @@
 
 CWD="$(dirname "$0")"
 
-. ./perform_db_operation.sh
+# shellcheck source=perform_db_operation.sh
+. "$CWD/perform_db_operation.sh"
 
-#Call the runQuery function from the perform_db_operation.sh file
-tables=$(runQuery "show tables")
-
-for table in "${tables[@]}"
-do
+# Call runQuery; capture one row per line (command substitution is a string, not an array)
+while IFS= read -r table; do
    echo "$table"
-done
+done < <(runQuery "show tables")
 
-#Get all the rowd from a table
-all_vals=$(runQuery "select * from account")
-
-for val in "${all_vals[@]}"
-do
+# Get all the rows from a table
+while IFS= read -r val; do
    echo "$val"
-done
+done < <(runQuery "select * from account")
